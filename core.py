@@ -2,10 +2,10 @@ import json
 import random
 import sys
 import time
-import order_sys
+import order
 import pmt_sys
-from pmt_sys import run_payment, pay_result, credit_name
-import post_order
+from pay import run_payment, pay_result, credit_name
+import post
 from funcs import clr, bold, blk, italic, red, green, yellow, blue, purple, cyan
 
 
