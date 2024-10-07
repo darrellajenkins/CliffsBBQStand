@@ -27,5 +27,5 @@ def display_time():
 def search():
     import webbrowser
     query_again = input("Input your query: ")
-    webbrowser.open("https://google.com/search?q=" + query_again)
+    webbrowser.open("https://duckduckgo.com/search?q=" + query_again)
 
