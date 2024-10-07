@@ -3,7 +3,7 @@ import random
 import sys
 import time
 import order
-import pmt_sys
+import pay
 from pay import run_payment, pay_result, credit_name
 import post
 from funcs import clr, bold, blk, italic, red, green, yellow, blue, purple, cyan
@@ -416,7 +416,7 @@ def new_session():
             break
     if start.lower() == 'b':
         a = Visitors()
-        a.new_cust = order_sys.CustOrder()
+        a.new_cust = order.CustOrder()
         a.order_details = a.new_cust.run_order()
         cc_pay = run_payment()
         paid_or_unpaid = cc_pay[0]
@@ -429,7 +429,7 @@ def new_session():
         a.who(a.ask_who())
 
         if a.discount_given():
-            a_coupon = post_order.Coupon()
+            a_coupon = post.Coupon()
             a.solo_or_companion()
 
             if a.companion:
@@ -446,14 +446,14 @@ def new_session():
         if Visitors.subscriber_info:
             a.save_cust_info(Visitors.subscriber_info)
             a.save_reasons_daily(Visitors.reasons_daily_totals)
-            a_survey = post_order.Survey()
+            a_survey = post.Survey()
             a_survey.survey_willingness()
 
             a_survey.get_survey_have_email(Visitors.subscriber_info[0][3])
             v = a_survey.survey_contact(Visitors.subscriber_info[0][3])
 
             if not a.discount_given():
-                a_coupon = post_order.Coupon()
+                a_coupon = post.Coupon()
 
             if v:
                 coupon = f"Coupon code: {v[0]}"
@@ -464,14 +464,14 @@ def new_session():
         if Visitors.non_subscriber_info:
             a.save_non_cust_info(Visitors.non_subscriber_info)
             a.save_reasons_daily(Visitors.reasons_daily_totals)
-            a_survey = post_order.Survey()
+            a_survey = post.Survey()
             a_survey.survey_willingness()
 
             get_email = a_survey.get_survey_ask_email()
             vv = a_survey.survey_contact(get_email)
 
             if not a.discount_given():
-                a_coupon = post_order.Coupon()
+                a_coupon = post.Coupon()
 
             if vv:
                 coupon = f"Coupon code: {vv[0]}"
