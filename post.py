@@ -29,7 +29,7 @@ class Survey:
         return location.title()
 
     def three_ques(self):
-        ques_1 = input("On a scale of 1 to 5 (5 being the highest rating), please enter the number that best represents the quality of the ice cream you enjoyed today: ")
+        ques_1 = input("On a scale of 1 to 5 (5 being the highest rating), please enter the number that best represents the quality of the barbeque you enjoyed today: ")
         ques_2 = input("On a scale of 1 to 5 (5 being the highest rating), please enter the number that best represents the service and friendliness you received from the staff today: ")
         ques_3 = input("On a scale of 1 to 5 (5 being the highest rating), please enter the number that best reflects the level of fun or enjoyment you enjoyed today: ")
         self.survey_results = {"Quality": ques_1, "Service/Friendliness": ques_2, "Fun/Enjoyment": ques_3}
