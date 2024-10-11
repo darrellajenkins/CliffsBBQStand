@@ -15,27 +15,6 @@ today_time = time.strftime('%I:%M:%S %p')
 
 class Visitors:
 
-    reasons_master_list = [("1", "First time visit"),
-                           ("2", "I was here last week"),
-                           ("3", "I was here last month"),
-                           ("4", "A friend brought me here today"),
-                           ("5", "Decided to come with a family member"),
-                           ("6", "On a date"),
-                           ("7", "I come in every week!"),
-                           ("8", "I love Cliff's BBQ Stand!"),
-                           ("9", "I am a tourist!"),
-                           ("10", "Prefer not to answer")]
-
-    visit_reasons_dict = {  "1": reasons_master_list[0][1], "2": reasons_master_list[1][1], "3": reasons_master_list[2][1],
-                            "4": reasons_master_list[3][1], "5": reasons_master_list[4][1], "6": reasons_master_list[5][1],
-                            "7": reasons_master_list[6][1], "8": reasons_master_list[7][1], "9": reasons_master_list[8][1], "10": reasons_master_list[9][1]}
-
-
-    startday_reasons_totals = { "1": [reasons_master_list[0][1], 0], "2": [reasons_master_list[1][1], 0], "3": [reasons_master_list[2][1], 0],
-                                "4": [reasons_master_list[3][1], 0], "5": [reasons_master_list[4][1], 0], "6": [reasons_master_list[5][1], 0],
-                                "7": [reasons_master_list[6][1], 0], "8": [reasons_master_list[7][1], 0],
-                                "9": [reasons_master_list[8][1], 0], "10": [reasons_master_list[9][1], 0]}
-
     discount_1 = 'please enjoy a $2 discount on your next visit to any of our stores.'
     discount_2 = 'please enjoy a 10% discount on your next visit to any of our stores.'
     discount_3 = 'please enjoy a 15% discount on your next visit to any of our stores.'
@@ -53,16 +32,28 @@ class Visitors:
     weekly_appreciate = 'You are a valued customer and we truly appreciate your regular visits to our shop! We hope you will bring a friend to share the fun!'
     weekly_rand_select = random.choice([weekly_coupon, weekly_appreciate])
 
-    response_to_reasons = {reasons_master_list[0][1]             : "Thank you for trying out Cliff's BBQ Stand!",
-                           reasons_master_list[1][1]             : 'We are so glad you came back!',
-                           reasons_master_list[2][1]             : 'Thanks for stopping by again!',
-                           reasons_master_list[3][1]             : f'{fr_rand_select}',
-                           reasons_master_list[4][1]             : f'{fam_rand_select}',
-                           reasons_master_list[5][1]             : f'{date_rand_select}',
-                           reasons_master_list[6][1]             : f'{weekly_rand_select}',
-                           reasons_master_list[7][1]             : 'We are happy to hear that you enjoy our shop! Bring a friend and share the fun!',
-                           reasons_master_list[8][1]             : 'Hope you will enjoy your time visiting the area. Safe travels!',
-                           reasons_master_list[9][1]             : 'Thanks for visiting. Please come back!'}
+    reasons_master_list = [("1", "First time visit", "Thank you for trying out Cliff's BBQ Stand!"),
+                           ("2", "I was here last week", "We are so glad you came back!"),
+                           ("3", "I was here last month", "Thanks for stopping by again!"),
+                           ("4", "A friend brought me here today", f"{fr_rand_select}"),
+                           ("5", "Decided to come with a family member", f"{fam_rand_select}"),
+                           ("6", "On a date", f"{date_rand_select}"),
+                           ("7", "I come in every week!", f"{weekly_rand_select}"),
+                           ("8", "I love Cliff's BBQ Stand!", "We are happy to hear that you enjoy our shop! Bring a friend and share the fun!"),
+                           ("9", "I am a tourist!", "Hope you will enjoy your time visiting the area. Safe travels!"),
+                           ("10", "Prefer not to answer", "Thanks for visiting. Please come back!")]
+
+    visit_reasons_dict = {}
+    for num, reason, response in reasons_master_list:
+        visit_reasons_dict[num] = reason
+
+    startday_reasons_totals = {}
+    for num, reason, responses in reasons_master_list:
+        startday_reasons_totals[num] = [reason, 0]
+
+    response_to_reasons = {}
+    for num, reason, responses in reasons_master_list:
+        response_to_reasons[reason] = responses
 
     subscriber_info = []
     non_subscriber_info = []
@@ -75,7 +66,7 @@ class Visitors:
         self.voucher_reason_5 = "Took survey and requested contact."
         self.signed_up = None
         self.reason: str = ""  # Str reason in a short sentence.
-        self.reason_num = ""  # Int value captured as a string.
+        self.reason_num: str = ""  # Int value captured as a string.
         self.credit_card_name = ""
 
     def thanks(self):
@@ -96,8 +87,8 @@ class Visitors:
     def ask_who(self):
         print(self.thanks())
         print("\nYou may be able to earn discounts on future visits. May we ask, what brought you in today?\n")
-        for who in Visitors.visit_reasons_dict:
-            print(f"({who}). {Visitors.visit_reasons_dict[who]}")
+        for num, reason in Visitors.visit_reasons_dict.items():
+            print(f"({num}). {reason}")
         c = 0
         cb = False
         while True:
@@ -428,7 +419,7 @@ def new_session():
                 else:
                     rpt_date = r.get_date()
                     r.report_daily_vouchers(rpt_date)
-                    same_date = rpt_datee
+                    same_date = rpt_date
             elif reports.lower() == 'p':
                 new_session()
                 break

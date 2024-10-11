@@ -1,3 +1,4 @@
+import json
 import time
 from funcs import clr, bold, blk, italic, red, green, yellow, blue, purple, cyan
 
