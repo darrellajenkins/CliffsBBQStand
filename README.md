@@ -5,6 +5,6 @@ ordering, payment, survey, and subscriber signup capability. All work is complet
 as of (10/06/2024) I am still working on the front end web deployment,
 the modules created so far are the culmination of several concepts I have 
 learned since July 2023. After reading 2000+ pages of information, 
-and maintaining a daily coding practice regimen, I feel comfortable 
+and adhering to a strategy of coding daily, I feel comfortable 
 and confident enough to find solutions in Python or other languages.
 </div>
