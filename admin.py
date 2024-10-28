@@ -4,7 +4,7 @@ from funcs import clr, bold, blk, italic, red, green, yellow, blue, purple, cyan
 
 
 class Reports:
-
+    """Provides daily reports by date for customers, reasons for visiting, survey data, vouchers issued, and additional details from surveys."""
     def __init__(self):
 
         self.name = ""
@@ -161,4 +161,3 @@ class Reports:
                 print(f"{bold}{cyan}There was a total of {e} separate coupon(s) issued on {date_text}.{clr}")
         except FileNotFoundError:
             print(f"\nNo coupons were issued on {date_text}.")
-

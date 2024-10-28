@@ -25,7 +25,6 @@ curr_month = time.strftime('%m')
 
 def run_payment():
     """Processes credit card payment and properly handles if user decides to exit before payment."""
-    paid = False
     while True:
         typ = input("\nWe only accept, VISA, Mastercard, or Discover.  Please enter the first digit of your credit card number [or Q to quit]: ")
         if typ[0].lower() == 'q':
@@ -47,7 +46,7 @@ def run_payment():
 
     paid = True
     while True:
-        cc = input("Please be sure that you wish to continue.  If so, please enter your entire credit card number [or Q to quit]: ")
+        cc = input("If you are ready to make payment, please enter your credit card number [or Q to quit]: ")
         if cc[0].lower() == 'q':
             paid = False
             print(f"\n{bold}Your session is now closed at your request. \nPlease return when you are ready to submit payment or have the accepted payment "
@@ -125,12 +124,7 @@ def run_payment():
     print("\nYour credit card has been processed.", end=' ')
     print(f"{blue}{bold}Thank you for your payment!{clr}")
     if paid:
-        return paid, credit
-
-def pay_result(paid):
-    if not paid:
-        print("Your payment did not go through.")
-        sys.exit()
+        return credit
 
 def credit_name():
     while True:

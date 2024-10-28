@@ -4,7 +4,7 @@ import sys
 import time
 import order
 import pay
-from pay import run_payment, pay_result, credit_name
+from pay import run_payment, credit_name
 import post
 from funcs import clr, bold, blk, italic, red, green, yellow, blue, purple, cyan
 from admin import Reports
@@ -14,7 +14,7 @@ today_date = time.strftime('%B %d %Y')
 today_time = time.strftime('%I:%M:%S %p')
 
 class Visitors:
-
+    """This is the core of the entire system. Visitors to the store are the most important part so everything begins here."""
     discount_1 = 'please enjoy a $2 discount on your next visit to any of our stores.'
     discount_2 = 'please enjoy a 10% discount on your next visit to any of our stores.'
     discount_3 = 'please enjoy a 15% discount on your next visit to any of our stores.'
@@ -60,7 +60,7 @@ class Visitors:
     reasons_daily_totals = None
 
     def __init__(self):
-
+        """Important attributes used to direct user data throughout the initial customer experience."""
         self.companion = False
         self.solo = False
         self.voucher_reason_5 = "Took survey and requested contact."
@@ -258,9 +258,7 @@ def new_session():
         a.new_cust = order.CustOrder()
         a.order_details = a.new_cust.run_order()
         cc_pay = run_payment()
-        paid_or_unpaid = cc_pay[0]
-        name_on_credit_card = cc_pay[1]
-        pay_result(paid_or_unpaid)
+        name_on_credit_card = cc_pay
         a.credit_card_name = name_on_credit_card
         print(f"{green}Order is in the name of: {a.orderer_name()}.  Name on credit card: {a.credit_card_name}.{clr}")
 
