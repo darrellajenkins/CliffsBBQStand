@@ -11,7 +11,7 @@ from admin import Reports
 
 today = time.ctime()
 today_date = time.strftime('%B %d %Y')
-today_time = time.strftime('%I:%M:%S %p')
+today_time = time.strftime('%H:%M:%S %p')
 
 class Visitors:
     """This is the core of the entire system. Visitors to the store are the most important part so everything begins here."""
